@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Obfuscator</title>
+    <title>JavaScript Encrypter</title>
     <script src="https://cdn.jsdelivr.net/npm/javascript-obfuscator"></script>
     <style>
         * {
@@ -13,7 +13,7 @@
         }
         body {
             font-family: Arial, sans-serif;
-            background-color: #000; /* Background hitam */
+            background-color: #000;
             color: #fff;
             display: flex;
             flex-direction: column;
@@ -21,69 +21,135 @@
             justify-content: center;
             height: 100vh;
             padding: 20px;
+            text-align: center;
         }
         .container {
             width: 90%;
-            max-width: 800px;
-            text-align: center;
+            max-width: 500px;
+            background: #111;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
         }
         h1 {
-            color: #00d4ff;
+            color: #fff;
+            font-size: 24px;
+        }
+        p {
+            font-size: 14px;
+            color: #ccc;
             margin-bottom: 15px;
         }
         textarea {
             width: 100%;
-            height: 200px;
-            background: #111; /* Warna lebih gelap */
+            height: 150px;
+            background: #222;
             color: #fff;
-            border: 1px solid #444;
+            border: none;
             padding: 10px;
             font-size: 14px;
             resize: none;
+            border-radius: 5px;
         }
-        .buttons {
+        .file-upload {
             display: flex;
+            align-items: center;
             justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        label {
+            background: #444;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #ff5c00;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #e04b00;
+        }
+        .result-container {
+            display: none;
+            margin-top: 15px;
+            background: #222;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .result-container textarea {
+            height: 100px;
+            background: #000;
+            color: #0f0;
+        }
+        .result-buttons {
+            display: flex;
             gap: 10px;
             margin-top: 10px;
         }
-        button {
-            padding: 10px 20px;
-            background: #00d4ff;
-            border: none;
-            color: #000;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #008bb9;
-        }
-        #output {
-            width: 100%;
-            height: 200px;
-            background: #222;
-            color: #00ff00;
-            border: 1px solid #444;
-            padding: 10px;
+        .footer {
+            margin-top: 20px;
             font-size: 14px;
-            margin-top: 10px;
-            white-space: pre-wrap;
+            color: #777;
+        }
+        .footer a {
+            color: #ff5c00;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>JavaScript Obfuscator</h1>
-        <textarea id="inputCode" placeholder="Masukkan kode JavaScript..."></textarea>
-        <div class="buttons">
-            <button onclick="obfuscateCode()">Obfuscate</button>
-            <button onclick="copyOutput()">Copy</button>
+        <h1>JavaScript Encrypter</h1>
+        <p>Gunakan ini untuk mengenkripsi kode JavaScript agar sulit dibaca.</p>
+        
+        <div class="file-upload">
+            <label for="fileInput">Pilih File</label>
+            <span id="fileName">Tidak ada file yang dipilih</span>
+            <input type="file" id="fileInput" accept=".js">
         </div>
-        <h2>Hasil:</h2>
-        <textarea id="output" readonly></textarea>
+
+        <textarea id="inputCode" placeholder="Masukkan kode yang ingin dienkripsi..."></textarea>
+        <button onclick="obfuscateCode()">[ START ]</button>
+
+        <div class="result-container" id="resultContainer">
+            <h3>Hasil:</h3>
+            <textarea id="output" readonly></textarea>
+            <div class="result-buttons">
+                <button onclick="copyOutput()">Salin</button>
+                <button onclick="downloadOutput()">Download</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Dibuat oleh <b>Gxyenn</b> | <a href="https://whatsapp.com/channel/0029Vap5nJh2UPBDIc9bja1s" target="_blank">Saluran Dev</a>
     </div>
 
     <script>
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                document.getElementById('fileName').textContent = file.name;
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('inputCode').value = e.target.result;
+                };
+                reader.readAsText(file);
+            }
+        });
+
         function obfuscateCode() {
             let code = document.getElementById('inputCode').value;
             if (!code) {
@@ -102,6 +168,7 @@
             }).getObfuscatedCode();
 
             document.getElementById('output').value = obfuscatedCode;
+            document.getElementById('resultContainer').style.display = 'block';
         }
 
         function copyOutput() {
@@ -109,6 +176,15 @@
             outputField.select();
             document.execCommand("copy");
             alert("Hasil obfuscation telah disalin!");
+        }
+
+        function downloadOutput() {
+            let text = document.getElementById('output').value;
+            let blob = new Blob([text], { type: "text/javascript" });
+            let link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "obfuscated.js";
+            link.click();
         }
     </script>
 </body>
