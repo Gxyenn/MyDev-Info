@@ -1,0 +1,11 @@
+{
+  "name": "reset-api",
+  "version": "1.0.0",
+  "description": "API untuk reset API key",
+  "main": "api/index.js",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.0.0",
+    "crypto": "^1.0.1"
+  }
+}
