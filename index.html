@@ -4,214 +4,167 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript Encrypter</title>
-    <script src="https://cdn.jsdelivr.net/npm/javascript-obfuscator"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
         body {
+            background-color: black;
+            color: white;
             font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            height: 100vh;
-            padding-top: 40px;
             text-align: center;
         }
         .container {
-            width: 90%;
-            max-width: 500px;
-            background: #111;
+            margin: 50px auto;
             padding: 20px;
-            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            background: #181818;
+            border-radius: 10px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
         }
         h1 {
-            color: #fff;
             font-size: 24px;
+            font-weight: bold;
         }
         p {
             font-size: 14px;
-            color: #ccc;
-            margin-bottom: 15px;
+        }
+        .file-input {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            background: #333;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        .file-input button {
+            background: gray;
+            border: none;
+            padding: 8px;
+            border-radius: 10px;
+            cursor: pointer;
         }
         textarea {
             width: 100%;
-            height: 150px;
-            background: #222;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            font-size: 14px;
-            resize: none;
+            height: 100px;
+            background: black;
+            color: white;
+            border: 1px solid gray;
             border-radius: 10px;
-        }
-        .file-upload {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-        input[type="file"] {
-            display: none;
-        }
-        label {
-            background: #444;
             padding: 10px;
+            margin-top: 10px;
+            resize: none;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        .btn {
+            background: orange;
+            color: black;
+            border: none;
+            padding: 12px;
             border-radius: 20px;
             cursor: pointer;
-        }
-        .btn-container {
-            margin-top: 10px;
-        }
-        button {
-            width: 100%;
-            padding: 12px;
-            background: #ff5c00;
-            border: none;
-            color: #fff;
             font-size: 16px;
-            cursor: pointer;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: 0.3s;
+            width: 100%;
         }
-        button:disabled {
-            background: #555;
+        .btn:disabled {
+            background: gray;
             cursor: not-allowed;
         }
-        .result-container {
+        .hasil-container {
             display: none;
-            margin-top: 15px;
-            background: #222;
+            background: black;
             padding: 10px;
-            border-radius: 15px;
-        }
-        .result-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        .notice {
-            font-size: 14px;
-            color: #ff5c00;
-            margin-bottom: 10px;
-            display: block;
-        }
-        .footer {
+            border-radius: 10px;
+            border: 1px solid gray;
             margin-top: 20px;
-            font-size: 14px;
-            color: #777;
         }
-        .footer a {
-            color: #ff5c00;
-            text-decoration: none;
+        .hasil {
+            color: lime;
+            font-family: monospace;
+            font-size: 14px;
+            text-align: left;
+            overflow-x: auto;
+        }
+        .btn-small {
+            background: orange;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 48%;
         }
     </style>
 </head>
 <body>
+
     <div class="container">
         <h1>JavaScript Encrypter</h1>
         <p>Gunakan ini untuk mengenkripsi kode JavaScript agar sulit dibaca.</p>
 
-        <span class="notice" id="followNotice">
-            Tolong ikuti <a href="https://whatsapp.com/channel/0029Vap5nJh2UPBDIc9bja1s" target="_blank" onclick="allowStart()">Saluran Developer</a> dulu!
-        </span>
-
-        <div class="file-upload">
-            <label for="fileInput">Pilih File</label>
-            <span id="fileName">Tidak ada file yang dipilih</span>
-            <input type="file" id="fileInput" accept=".js">
+        <div class="file-input">
+            <button>Pilih File</button>
+            <span id="file-name">Tidak ada file yang dipilih</span>
         </div>
 
-        <textarea id="inputCode" placeholder="Masukkan kode yang ingin dienkripsi..."></textarea>
-        
-        <div class="btn-container">
-            <button id="startBtn" onclick="obfuscateCode()" disabled>[ START ]</button>
+        <textarea id="kode" placeholder="Masukkan kode yang ingin dienkripsi..."></textarea>
+
+        <p><b>🔗 Harap ikuti</b> <a href="https://whatsapp.com/channel/0029Vap5nJh2UPBDIc9bja1s" target="_blank" id="saluran-dev">Saluran Dev</a> dulu untuk bisa memulai!</p>
+
+        <div class="button-container">
+            <button id="start-btn" class="btn" disabled>[ START ]</button>
         </div>
 
-        <div class="result-container" id="resultContainer">
+        <div id="hasil-container" class="hasil-container">
             <h3>Hasil:</h3>
-            <textarea id="output" readonly></textarea>
-            <div class="result-buttons">
-                <button onclick="copyOutput()">Salin</button>
-                <button onclick="downloadOutput()">Download</button>
-            </div>
+            <pre id="hasil" class="hasil"></pre>
+            <button class="btn-small" onclick="salinHasil()">Salin</button>
+            <button class="btn-small" onclick="downloadHasil()">Download</button>
         </div>
-    </div>
 
-    <div class="footer">
-        Dibuat oleh <b>Gxyenn</b> | <a href="https://whatsapp.com/channel/0029Vap5nJh2UPBDIc9bja1s" target="_blank">Saluran Dev</a>
+        <p>Dibuat oleh <b>Gxyenn</b> | <a href="https://whatsapp.com/channel/0029Vap5nJh2UPBDIc9bja1s" target="_blank">Saluran Dev</a></p>
     </div>
 
     <script>
-        function allowStart() {
-            localStorage.setItem('channelFollowed', 'true'); // Simpan status di LocalStorage
-            document.getElementById('startBtn').disabled = false; // Aktifkan tombol
-            document.getElementById('followNotice').style.display = 'none'; // Sembunyikan teks
-        }
-
-        window.onload = function () {
-            if (localStorage.getItem('channelFollowed') === 'true') {
-                document.getElementById('startBtn').disabled = false; // Aktifkan tombol jika sudah follow sebelumnya
-                document.getElementById('followNotice').style.display = 'none'; // Sembunyikan teks
-            }
-        };
-
-        document.getElementById('fileInput').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                document.getElementById('fileName').textContent = file.name;
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('inputCode').value = e.target.result;
-                };
-                reader.readAsText(file);
-            }
+        document.getElementById("saluran-dev").addEventListener("click", function() {
+            localStorage.setItem("ikutiSaluran", "true");
+            document.getElementById("start-btn").disabled = false;
         });
 
-        function obfuscateCode() {
-            let code = document.getElementById('inputCode').value;
-            if (!code) {
-                alert("Masukkan kode JavaScript terlebih dahulu!");
+        document.getElementById("start-btn").addEventListener("click", function() {
+            let kode = document.getElementById("kode").value;
+            if (kode.trim() === "") {
+                alert("Masukkan kode terlebih dahulu!");
                 return;
             }
 
-            let obfuscatedCode = JavaScriptObfuscator.obfuscate(code, {
-                compact: true,
-                controlFlowFlattening: true,
-                numbersToExpressions: true,
-                simplify: true,
-                stringArrayShuffle: true,
-                splitStrings: true,
-                stringArrayThreshold: 1
-            }).getObfuscatedCode();
+            let hasilEnkripsi = btoa(kode); // Contoh enkripsi sederhana
+            document.getElementById("hasil").innerText = hasilEnkripsi;
+            document.getElementById("hasil-container").style.display = "block";
+        });
 
-            document.getElementById('output').value = obfuscatedCode;
-            document.getElementById('resultContainer').style.display = 'block';
+        function salinHasil() {
+            let hasil = document.getElementById("hasil").innerText;
+            navigator.clipboard.writeText(hasil);
+            alert("Hasil telah disalin!");
         }
 
-        function copyOutput() {
-            let outputField = document.getElementById('output');
-            outputField.select();
-            document.execCommand("copy");
-            alert("Hasil obfuscation telah disalin!");
-        }
-
-        function downloadOutput() {
-            let text = document.getElementById('output').value;
-            let blob = new Blob([text], { type: "text/javascript" });
+        function downloadHasil() {
+            let hasil = document.getElementById("hasil").innerText;
+            let blob = new Blob([hasil], { type: "text/plain" });
             let link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
-            link.download = "obfuscated.js";
+            link.download = "hasil-enkripsi.txt";
             link.click();
         }
+
+        // Cek apakah user sudah klik link sebelumnya
+        if (localStorage.getItem("ikutiSaluran") === "true") {
+            document.getElementById("start-btn").disabled = false;
+        }
     </script>
+
 </body>
 </html>
