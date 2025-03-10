@@ -36,13 +36,17 @@
             padding: 10px;
             border-radius: 10px;
             margin-top: 15px;
+            cursor: pointer;
         }
-        .file-input button {
+        .file-input label {
             background: gray;
             border: none;
             padding: 8px;
             border-radius: 10px;
             cursor: pointer;
+        }
+        input[type="file"] {
+            display: none;
         }
         textarea {
             width: 100%;
@@ -105,7 +109,8 @@
         <p>Gunakan ini untuk mengenkripsi kode JavaScript agar sulit dibaca.</p>
 
         <div class="file-input">
-            <button>Pilih File</button>
+            <label for="fileUpload">Pilih File</label>
+            <input type="file" id="fileUpload" accept=".js">
             <span id="file-name">Tidak ada file yang dipilih</span>
         </div>
 
@@ -159,6 +164,19 @@
             link.download = "hasil-enkripsi.txt";
             link.click();
         }
+
+        document.getElementById("fileUpload").addEventListener("change", function(event) {
+            let file = event.target.files[0];
+            if (file) {
+                document.getElementById("file-name").textContent = file.name;
+
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById("kode").value = e.target.result;
+                };
+                reader.readAsText(file);
+            }
+        });
 
         // Cek apakah user sudah klik link sebelumnya
         if (localStorage.getItem("ikutiSaluran") === "true") {
