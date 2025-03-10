@@ -3,45 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Key Gratis</title>
+    <title>Gratis API Key</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #111;
-            color: white;
-        }
-        .container {
-            margin-top: 50px;
-        }
-        .api-box {
-            background: #222;
-            padding: 20px;
-            border-radius: 5px;
-            display: inline-block;
-            text-align: left;
-        }
+        body { font-family: Arial, sans-serif; text-align: center; background: #222; color: white; }
+        .container { margin-top: 50px; }
+        input, button { padding: 10px; margin: 10px; }
+        .api-box { padding: 10px; background: #444; display: inline-block; }
     </style>
 </head>
 <body>
+    <h1>🔥 Buat API Key Gratis 🔥</h1>
     <div class="container">
-        <h1>API Key Gratis</h1>
-        <div class="api-box">
-            <p><strong>Brat GPT AI:</strong> <span id="bratgpt">Loading...</span></p>
-            <p><strong>Layanan Lain:</strong> <span id="otherapi">Loading...</span></p>
-        </div>
-        <p>Creator: <strong>Gxyenn</strong></p>
+        <button onclick="generateApiKey()">Buat API Key</button>
+        <div id="apikey" class="api-box"></div>
+        <br>
+        <button onclick="cekApikey()">Cek API Key</button>
+        <p id="status"></p>
     </div>
 
     <script>
-        // Simulasi API Key
-        const apikeys = {
-            bratgpt: "BRATGPT-1234567890",
-            otherapi: "OTHERAPI-0987654321"
-        };
+        let apiKey = "";
 
-        document.getElementById("bratgpt").textContent = apikeys.bratgpt;
-        document.getElementById("otherapi").textContent = apikeys.otherapi;
+        function generateApiKey() {
+            fetch("/generate")
+                .then(res => res.json())
+                .then(data => {
+                    apiKey = data.apikey;
+                    document.getElementById("apikey").innerText = apiKey;
+                });
+        }
+
+        function cekApikey() {
+            fetch("/validate?key=" + apiKey)
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("status").innerText = data.message;
+                });
+        }
     </script>
 </body>
 </html>
