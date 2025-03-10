@@ -67,6 +67,9 @@
             border-radius: 20px;
             cursor: pointer;
         }
+        .btn-container {
+            margin-top: 10px;
+        }
         button {
             width: 100%;
             padding: 12px;
@@ -75,12 +78,13 @@
             color: #fff;
             font-size: 16px;
             cursor: pointer;
-            margin-top: 10px;
             border-radius: 25px;
             font-weight: bold;
+            transition: 0.3s;
         }
-        button:hover {
-            background: #e04b00;
+        button:disabled {
+            background: #555;
+            cursor: not-allowed;
         }
         .result-container {
             display: none;
@@ -89,16 +93,16 @@
             padding: 10px;
             border-radius: 15px;
         }
-        .result-container textarea {
-            height: 100px;
-            background: #000;
-            color: #0f0;
-            border-radius: 10px;
-        }
         .result-buttons {
             display: flex;
             gap: 10px;
             margin-top: 10px;
+        }
+        .notice {
+            font-size: 14px;
+            color: #ff5c00;
+            margin-bottom: 10px;
+            display: block;
         }
         .footer {
             margin-top: 20px;
@@ -115,7 +119,11 @@
     <div class="container">
         <h1>JavaScript Encrypter</h1>
         <p>Gunakan ini untuk mengenkripsi kode JavaScript agar sulit dibaca.</p>
-        
+
+        <span class="notice" id="followNotice">
+            Tolong ikuti <a href="https://whatsapp.com/channel/0029Vap5nJh2UPBDIc9bja1s" target="_blank" onclick="allowStart()">Saluran Developer</a> dulu!
+        </span>
+
         <div class="file-upload">
             <label for="fileInput">Pilih File</label>
             <span id="fileName">Tidak ada file yang dipilih</span>
@@ -123,7 +131,10 @@
         </div>
 
         <textarea id="inputCode" placeholder="Masukkan kode yang ingin dienkripsi..."></textarea>
-        <button onclick="obfuscateCode()">[ START ]</button>
+        
+        <div class="btn-container">
+            <button id="startBtn" onclick="obfuscateCode()" disabled>[ START ]</button>
+        </div>
 
         <div class="result-container" id="resultContainer">
             <h3>Hasil:</h3>
@@ -140,6 +151,19 @@
     </div>
 
     <script>
+        function allowStart() {
+            localStorage.setItem('channelFollowed', 'true'); // Simpan status di LocalStorage
+            document.getElementById('startBtn').disabled = false; // Aktifkan tombol
+            document.getElementById('followNotice').style.display = 'none'; // Sembunyikan teks
+        }
+
+        window.onload = function () {
+            if (localStorage.getItem('channelFollowed') === 'true') {
+                document.getElementById('startBtn').disabled = false; // Aktifkan tombol jika sudah follow sebelumnya
+                document.getElementById('followNotice').style.display = 'none'; // Sembunyikan teks
+            }
+        };
+
         document.getElementById('fileInput').addEventListener('change', function(event) {
             const file = event.target.files[0];
             if (file) {
