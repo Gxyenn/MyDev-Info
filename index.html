@@ -3,42 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gratis API Key</title>
+    <title>JavaScript Obfuscator</title>
+    <script src="https://cdn.jsdelivr.net/npm/javascript-obfuscator"></script>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; background: #222; color: white; }
-        .container { margin-top: 50px; }
-        input, button { padding: 10px; margin: 10px; }
-        .api-box { padding: 10px; background: #444; display: inline-block; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000; /* Background hitam */
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+        }
+        h1 {
+            color: #00d4ff;
+            margin-bottom: 15px;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            background: #111; /* Warna lebih gelap */
+            color: #fff;
+            border: 1px solid #444;
+            padding: 10px;
+            font-size: 14px;
+            resize: none;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #00d4ff;
+            border: none;
+            color: #000;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #008bb9;
+        }
+        #output {
+            width: 100%;
+            height: 200px;
+            background: #222;
+            color: #00ff00;
+            border: 1px solid #444;
+            padding: 10px;
+            font-size: 14px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+        }
     </style>
 </head>
 <body>
-    <h1>🔥 Buat API Key Gratis 🔥</h1>
     <div class="container">
-        <button onclick="generateApiKey()">Buat API Key</button>
-        <div id="apikey" class="api-box"></div>
-        <br>
-        <button onclick="cekApikey()">Cek API Key</button>
-        <p id="status"></p>
+        <h1>JavaScript Obfuscator</h1>
+        <textarea id="inputCode" placeholder="Masukkan kode JavaScript..."></textarea>
+        <div class="buttons">
+            <button onclick="obfuscateCode()">Obfuscate</button>
+            <button onclick="copyOutput()">Copy</button>
+        </div>
+        <h2>Hasil:</h2>
+        <textarea id="output" readonly></textarea>
     </div>
 
     <script>
-        let apiKey = "";
+        function obfuscateCode() {
+            let code = document.getElementById('inputCode').value;
+            if (!code) {
+                alert("Masukkan kode JavaScript terlebih dahulu!");
+                return;
+            }
 
-        function generateApiKey() {
-            fetch("/generate")
-                .then(res => res.json())
-                .then(data => {
-                    apiKey = data.apikey;
-                    document.getElementById("apikey").innerText = apiKey;
-                });
+            let obfuscatedCode = JavaScriptObfuscator.obfuscate(code, {
+                compact: true,
+                controlFlowFlattening: true,
+                numbersToExpressions: true,
+                simplify: true,
+                stringArrayShuffle: true,
+                splitStrings: true,
+                stringArrayThreshold: 1
+            }).getObfuscatedCode();
+
+            document.getElementById('output').value = obfuscatedCode;
         }
 
-        function cekApikey() {
-            fetch("/validate?key=" + apiKey)
-                .then(res => res.json())
-                .then(data => {
-                    document.getElementById("status").innerText = data.message;
-                });
+        function copyOutput() {
+            let outputField = document.getElementById('output');
+            outputField.select();
+            document.execCommand("copy");
+            alert("Hasil obfuscation telah disalin!");
         }
     </script>
 </body>
