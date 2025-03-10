@@ -116,7 +116,7 @@
 
         <textarea id="kode" placeholder="Masukkan kode yang ingin dienkripsi..."></textarea>
 
-        <p><b>🔗 Harap ikuti</b> <a href="https://whatsapp.com/channel/0029Vap5nJh2UPBDIc9bja1s" target="_blank" id="saluran-dev">Saluran Dev</a> dulu untuk bisa memulai!</p>
+        <p id="alert-pesan"><b>🔗 Harap ikuti</b> <a href="https://whatsapp.com/channel/0029Vap5nJh2UPBDIc9bja1s" target="_blank" id="saluran-dev">Saluran Dev</a> dulu untuk bisa memulai!</p>
 
         <div class="button-container">
             <button id="start-btn" class="btn" disabled>[ START ]</button>
@@ -136,6 +136,7 @@
         document.getElementById("saluran-dev").addEventListener("click", function() {
             localStorage.setItem("ikutiSaluran", "true");
             document.getElementById("start-btn").disabled = false;
+            document.getElementById("alert-pesan").style.display = "none";
         });
 
         document.getElementById("start-btn").addEventListener("click", function() {
@@ -181,6 +182,7 @@
         // Cek apakah user sudah klik link sebelumnya
         if (localStorage.getItem("ikutiSaluran") === "true") {
             document.getElementById("start-btn").disabled = false;
+            document.getElementById("alert-pesan").style.display = "none";
         }
     </script>
 
