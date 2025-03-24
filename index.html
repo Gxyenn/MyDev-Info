@@ -3,188 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Encrypter</title>
+    <title>Gxyenn Portfolio</title>
     <style>
         body {
             background-color: black;
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
-        }
-        .container {
-            margin: 50px auto;
-            padding: 20px;
-            width: 90%;
-            max-width: 400px;
-            background: #181818;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            margin: 0;
+            padding: 0;
         }
         h1 {
-            font-size: 24px;
-            font-weight: bold;
+            color: red;
         }
-        p {
-            font-size: 14px;
+        .container {
+            padding: 20px;
         }
-        .file-input {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            background: #333;
-            padding: 10px;
-            border-radius: 10px;
-            margin-top: 15px;
-            cursor: pointer;
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
         }
-        .file-input label {
-            background: gray;
-            border: none;
-            padding: 8px;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        input[type="file"] {
-            display: none;
-        }
-        textarea {
-            width: 100%;
-            height: 100px;
-            background: black;
-            color: white;
-            border: 1px solid gray;
-            border-radius: 10px;
-            padding: 10px;
-            margin-top: 10px;
-            resize: none;
-        }
-        .button-container {
+        .social-links {
             margin-top: 20px;
         }
-        .btn {
-            background: orange;
-            color: black;
-            border: none;
-            padding: 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
+        .social-links a {
+            display: inline-block;
+            margin: 10px;
         }
-        .btn:disabled {
-            background: gray;
-            cursor: not-allowed;
+        .social-links img {
+            width: 40px;
+            height: 40px;
         }
-        .hasil-container {
-            display: none;
-            background: black;
-            padding: 10px;
-            border-radius: 10px;
-            border: 1px solid gray;
-            margin-top: 20px;
-        }
-        .hasil {
-            color: lime;
-            font-family: monospace;
-            font-size: 14px;
-            text-align: left;
-            overflow-x: auto;
-        }
-        .btn-small {
-            background: orange;
-            border: none;
-            padding: 10px;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-top: 10px;
-            width: 48%;
+        .footer {
+            margin-top: 50px;
+            font-size: 12px;
+            opacity: 0.6;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>JavaScript Encrypter</h1>
-        <p>Gunakan ini untuk mengenkripsi kode JavaScript agar sulit dibaca.</p>
+        <h1>Hallo I'm Gxyenn</h1>
+        <p>Kandidat Pemula Creator Pemula<br>I'm Gxyenn</p>
 
-        <div class="file-input">
-            <label for="fileUpload">Pilih File</label>
-            <input type="file" id="fileUpload" accept=".js">
-            <span id="file-name">Tidak ada file yang dipilih</span>
+        <img src="https://files.catbox.moe/877s7g.png" alt="Profile Picture" class="profile-img">
+
+        <div class="social-links">
+            <a href="https://github.com/Gxyenn" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub">
+            </a>
+            <a href="https://github.com/Gxyenn/XLESYVIP" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733609.png" alt="Script Bot WA">
+            </a>
+            <a href="https://youtube.com/@GxyenDev" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+            </a>
+            <a href="https://whatsapp.com/channel/0029Vap5nJh2UPBDIc9bja1s" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp Channel">
+            </a>
         </div>
 
-        <textarea id="kode" placeholder="Masukkan kode yang ingin dienkripsi..."></textarea>
-
-        <p id="alert-pesan"><b>🔗 Harap ikuti</b> <a href="https://whatsapp.com/channel/0029Vap5nJh2UPBDIc9bja1s" target="_blank" id="saluran-dev">Saluran Dev</a> dulu untuk bisa memulai!</p>
-
-        <div class="button-container">
-            <button id="start-btn" class="btn" disabled>[ START ]</button>
+        <div class="footer">
+            <a href="https://wa.me/6283877636168" style="color: white; text-decoration: none;">ContactDev</a>
         </div>
-
-        <div id="hasil-container" class="hasil-container">
-            <h3>Hasil:</h3>
-            <pre id="hasil" class="hasil"></pre>
-            <button class="btn-small" onclick="salinHasil()">Salin</button>
-            <button class="btn-small" onclick="downloadHasil()">Download</button>
-        </div>
-
-        <p>Dibuat oleh <b>Gxyenn</b> | <a href="https://whatsapp.com/channel/0029Vap5nJh2UPBDIc9bja1s" target="_blank">Saluran Dev</a></p>
     </div>
-
-    <script>
-        document.getElementById("saluran-dev").addEventListener("click", function() {
-            localStorage.setItem("ikutiSaluran", "true");
-            document.getElementById("start-btn").disabled = false;
-            document.getElementById("alert-pesan").style.display = "none";
-        });
-
-        document.getElementById("start-btn").addEventListener("click", function() {
-            let kode = document.getElementById("kode").value;
-            if (kode.trim() === "") {
-                alert("Masukkan kode terlebih dahulu!");
-                return;
-            }
-
-            let hasilEnkripsi = btoa(kode); // Contoh enkripsi sederhana
-            document.getElementById("hasil").innerText = hasilEnkripsi;
-            document.getElementById("hasil-container").style.display = "block";
-        });
-
-        function salinHasil() {
-            let hasil = document.getElementById("hasil").innerText;
-            navigator.clipboard.writeText(hasil);
-            alert("Hasil telah disalin!");
-        }
-
-        function downloadHasil() {
-            let hasil = document.getElementById("hasil").innerText;
-            let blob = new Blob([hasil], { type: "text/plain" });
-            let link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = "hasil-enkripsi.txt";
-            link.click();
-        }
-
-        document.getElementById("fileUpload").addEventListener("change", function(event) {
-            let file = event.target.files[0];
-            if (file) {
-                document.getElementById("file-name").textContent = file.name;
-
-                let reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById("kode").value = e.target.result;
-                };
-                reader.readAsText(file);
-            }
-        });
-
-        // Cek apakah user sudah klik link sebelumnya
-        if (localStorage.getItem("ikutiSaluran") === "true") {
-            document.getElementById("start-btn").disabled = false;
-            document.getElementById("alert-pesan").style.display = "none";
-        }
-    </script>
 
 </body>
 </html>
