@@ -16,7 +16,6 @@ body {
     background: #0d1117;
 }
 
-/* Profile Picture */
 .profile-pic {
     width: 100px;
     height: 100px;
@@ -37,34 +36,42 @@ body {
     margin: 20px 0;
     max-height: 300px;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Pesan dari AI */
+.ai-message {
+    background: #2c2f36;
+    color: white;
     text-align: left;
-}
-
-/* Message */
-.message {
-    margin: 10px 0;
     padding: 10px;
-    border-radius: 5px;
-    max-width: 75%;
+    border-radius: 10px;
+    align-self: flex-start;
+    max-width: 70%;
 }
 
-/* User Message */
-.message.user {
-    background: #6f42c1;
+/* Pesan dari User */
+.user-message {
+    background: #4caf50;
     color: white;
-    margin-left: auto;
+    text-align: left;
+    padding: 10px;
+    border-radius: 10px;
+    align-self: flex-end;
+    max-width: 70%;
 }
 
-/* Bot Message */
-.message.bot {
-    background: #1f6feb;
+/* Pesan Error */
+.error-message {
+    background: #d32f2f;
     color: white;
-    margin-right: auto;
-}
-
-/* Error Message */
-.message.error {
-    background: #ff4d4d;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 50%;
+    margin: 0 auto;
 }
 
 /* Input Container */
@@ -115,4 +122,4 @@ button {
 .whatsapp-btn img {
     width: 50px;
     height: 50px;
-    }
+}
