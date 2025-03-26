@@ -26,12 +26,14 @@
         <main>
             <!-- Chat Box -->
             <div id="chat-box" class="chat-box">
-                <p class="welcome-message">Haii, Aku Gxyenn Assistant, Saya Akan Melayani Anda, Apa Yang Ingin Anda Cari??</p>
+                <div class="bot-message">
+                    Haii, Aku Gxyenn Assistant, Saya Akan Melayani Anda, Apa Yang Ingin Anda Cari??
+                </div>
             </div>
 
-            <!-- Input untuk Kirim Pesan ke API -->
+            <!-- Input dan Tombol -->
             <div class="input-container">
-                <input type="text" id="user-input" placeholder="Ketik sesuatu...">
+                <input type="text" id="user-input" placeholder="Ketik sesuatu..." onkeypress="handleKeyPress(event)">
                 <button onclick="sendMessage()">Kirim</button>
                 <button onclick="resetChat()">Reset</button>
             </div>
@@ -51,58 +53,66 @@
     <script>
         // Simulasi loading screen
         window.onload = function () {
-            setTimeout(function () {
+            setTimeout(() => {
                 document.getElementById('loading-screen').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
             }, 2000);
         };
 
-        // Auto-scroll ke bawah setiap kali chat ditambahkan
-        function scrollToBottom() {
-            const chatBox = document.getElementById('chat-box');
-            chatBox.scrollTop = chatBox.scrollHeight;
+        // Kirim pesan saat menekan Enter
+        function handleKeyPress(event) {
+            if (event.key === "Enter") sendMessage();
         }
 
-        // Fungsi untuk menambahkan pesan dengan animasi
-        function addMessage(message, type) {
+        // Fungsi untuk mengirim pesan
+        async function sendMessage() {
+            const userInput = document.getElementById('user-input').value.trim();
+            if (!userInput) return alert("Harap masukkan pesan!");
+
             const chatBox = document.getElementById('chat-box');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${type}`;
-            messageDiv.textContent = message;
-            chatBox.appendChild(messageDiv);
-
-            // Animasi masuk
-            setTimeout(() => messageDiv.classList.add('show'), 50);
-
+            chatBox.innerHTML += `<div class="user-message">${userInput}</div>`;
             scrollToBottom();
-        }
 
-        // Fungsi untuk Kirim Pesan ke API
-        function sendMessage() {
-            const userInput = document.getElementById('user-input');
-            if (!userInput.value) return alert("Harap masukkan pesan!");
+            // Animasi gelombang
+            const wave = `<div class="bot-message wave"><span></span><span></span><span></span></div>`;
+            chatBox.innerHTML += wave;
+            scrollToBottom();
 
-            // Tampilkan pesan pengguna
-            addMessage(userInput.value, 'user');
+            const apiUrl = `https://api.siputzx.my.id/api/ai/luminai?content=${encodeURIComponent(userInput)}`;
 
-            const apiUrl = `https://api.siputzx.my.id/api/ai/luminai?content=${encodeURIComponent(userInput.value)}`;
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
 
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    addMessage(data.result ? `${data.result}\n\nDibuat oleh Gxyenn.` : "Gagal mendapatkan respon.", 'bot');
-                })
-                .catch(() => {
-                    addMessage("Terjadi kesalahan, coba lagi.", 'error');
-                });
+                // Hapus animasi
+                document.querySelector('.wave').remove();
 
-            userInput.value = '';
+                if (data.result) {
+                    chatBox.innerHTML += `<div class="bot-message">${data.result}</div>`;
+                } else {
+                    chatBox.innerHTML += `<div class="error-message">Gagal mendapatkan respon.</div>`;
+                }
+            } catch (error) {
+                document.querySelector('.wave').remove();
+                chatBox.innerHTML += `<div class="error-message">Terjadi kesalahan, coba lagi.</div>`;
+            }
+
+            document.getElementById('user-input').value = "";
+            scrollToBottom();
         }
 
         // Fungsi Reset Chat
         function resetChat() {
+            document.getElementById('chat-box').innerHTML = `
+                <div class="bot-message">
+                    Haii, Aku Gxyenn Assistant, Saya Akan Melayani Anda, Apa Yang Ingin Anda Cari??
+                </div>`;
+        }
+
+        // Auto Scroll ke bawah
+        function scrollToBottom() {
             const chatBox = document.getElementById('chat-box');
-            chatBox.innerHTML = '<p class="welcome-message">Haii, Aku Gxyenn Assistant, Saya Akan Melayani Anda, Apa Yang Ingin Anda Cari??</p>';
+            chatBox.scrollTop = chatBox.scrollHeight;
         }
     </script>
 </body>
