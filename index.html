@@ -25,8 +25,9 @@
         </header>
 
         <main>
-            <div class="chat-box">
-                <p>Haii, Aku Gxyenn Assistant, Saya Akan Melayani Anda, Apa Yang Ingin Anda Cari??</p>
+            <!-- Chat Box -->
+            <div id="chat-box" class="chat-box">
+                <p id="chat-placeholder">Haii, Aku Gxyenn Assistant, Saya Akan Melayani Anda, Apa Yang Ingin Anda Cari??</p>
             </div>
 
             <!-- Input untuk Kirim Pesan ke API -->
@@ -34,7 +35,6 @@
                 <input type="text" id="user-input" placeholder="Ketik sesuatu...">
                 <button onclick="sendMessage()">Kirim</button>
             </div>
-            <div id="response"></div>
 
             <!-- Tombol Script Bot WA -->
             <div class="button-container">
@@ -60,6 +60,7 @@
         // Fungsi untuk Kirim Pesan ke API
         function sendMessage() {
             const userInput = document.getElementById('user-input').value;
+            const chatPlaceholder = document.getElementById('chat-placeholder');
             if (!userInput) return alert("Harap masukkan pesan!");
 
             const apiUrl = `https://api.siputzx.my.id/api/ai/luminai?content=${encodeURIComponent(userInput)}`;
@@ -67,13 +68,14 @@
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => {
-                    const responseText = data.result ? `${data.result}\n\nDibuat oleh Gxyenn.` : "Gagal mendapatkan respon.";
-                    document.getElementById('response').innerText = responseText;
+                    chatPlaceholder.innerText = data.result
+                        ? `${data.result}\n\nDibuat oleh Gxyenn.`
+                        : "Gagal mendapatkan respon.";
                 })
-                .catch(error => {
-                    document.getElementById('response').innerText = "Terjadi kesalahan, coba lagi.";
+                .catch(() => {
+                    chatPlaceholder.innerText = "Terjadi kesalahan, coba lagi.";
                 });
         }
     </script>
 </body>
-                </html>
+</html>
