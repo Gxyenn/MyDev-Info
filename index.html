@@ -4,50 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Lippxz Store Digital</title>
+    <title>Gxyenn Store</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Lippxz Store Digital</h1>
-    </header>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <img src="https://via.placeholder.com/100" alt="Gxyenn Logo" class="profile-pic">
+        <h1>Gxyenn Store</h1>
+        <p>Store Aman Dan Terpercaya</p>
+        <p class="loading-text">Loading...</p>
+    </div>
 
-    <main>
-        <section class="hero">
-            <h2>Selamat Datang di Lippxz Store Digital</h2>
-            <p>Tempat terbaik untuk menemukan produk digital berkualitas.</p>
-            <a href="#products" class="btn">Lihat Produk</a>
-        </section>
+    <!-- Main Content -->
+    <div id="main-content" style="display: none;">
+        <header>
+            <img src="https://via.placeholder.com/100" alt="Gxyenn Assistant" class="profile-pic">
+            <h1>Gxyenn Assistant</h1>
+            <p>Ai Assistant By Gxyenn</p>
+        </header>
 
-        <section id="products" class="products">
-            <h3>Produk Kami</h3>
-            <div class="product-list">
-                <div class="product-item">
-                    <img src="https://via.placeholder.com/150" alt="Produk 1">
-                    <h4>Produk 1</h4>
-                    <p>Deskripsi singkat tentang produk ini.</p>
-                    <button>Beli Sekarang</button>
-                </div>
-
-                <div class="product-item">
-                    <img src="https://via.placeholder.com/150" alt="Produk 2">
-                    <h4>Produk 2</h4>
-                    <p>Deskripsi singkat tentang produk ini.</p>
-                    <button>Beli Sekarang</button>
-                </div>
-
-                <div class="product-item">
-                    <img src="https://via.placeholder.com/150" alt="Produk 3">
-                    <h4>Produk 3</h4>
-                    <p>Deskripsi singkat tentang produk ini.</p>
-                    <button>Beli Sekarang</button>
-                </div>
+        <main>
+            <div class="chat-box">
+                <p>Haii, Aku Gxyenn Assistant, Saya Akan Melayani Anda, Apa Yang Ingin Anda Cari??</p>
             </div>
-        </section>
-    </main>
+            <div class="button-container">
+                <button onclick="alert('Produk Panel Pterodactyl')">Produk Panel Pterodactyl</button>
+                <button onclick="alert('Script Bot WhatsApp')">Script Bot WhatsApp</button>
+            </div>
+        </main>
 
-    <footer>
-        <p>&copy; 2025 Lippxz Store Digital. All rights reserved.</p>
-    </footer>
+        <!-- WhatsApp Icon -->
+        <a href="https://wa.me/6283877636168" class="whatsapp-btn" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+        </a>
+    </div>
+
+    <script>
+        // Simulasi loading screen
+        window.onload = function () {
+            setTimeout(function () {
+                document.getElementById('loading-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            }, 2000); // Loading selama 2 detik
+        };
+    </script>
 </body>
-</html>
+    </html>
