@@ -1,84 +1,53 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gxyenn Portfolio</title>
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            padding: 20px;
-        }
-        .profile-img {
-            width: 80%;
-            max-width: 500px;
-            height: auto;
-            display: block;
-            margin: 40px auto 20px auto;
-            border-radius: 20px; /* Sudut sedikit melengkung */
-        }
-        .social-links {
-            margin-top: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-        .social-links a {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: white;
-            font-size: 18px;
-            padding: 12px 20px;
-            border-radius: 10px;
-            width: 250px;
-            background-color: rgba(255, 255, 255, 0.1);
-            transition: 0.3s;
-            justify-content: center;
-        }
-        .social-links a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        .social-links img {
-            width: 30px;
-            height: 30px;
-        }
-        .footer {
-            margin-top: 50px;
-            font-size: 14px;
-            opacity: 0.8;
-        }
-        .footer a {
-            color: red;
-            text-decoration: none;
-            font-weight: bold;
-        }
-    </style>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lippxz Store Digital</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <header>
+        <h1>Lippxz Store Digital</h1>
+    </header>
 
-    <div class="container">
-        <!-- Foto Utama -->
-        <img src="https://files.catbox.moe/dxwhcj.png" alt="Profile Picture" class="profile-img">
+    <main>
+        <section class="hero">
+            <h2>Selamat Datang di Lippxz Store Digital</h2>
+            <p>Tempat terbaik untuk menemukan produk digital berkualitas.</p>
+            <a href="#products" class="btn">Lihat Produk</a>
+        </section>
 
-        <!-- Link Sosial Media Berurutan ke Bawah -->
-        <div class="social-links">
-            <a href="https://github.com/Gxyenn" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub"> GitHub
-            </a>
-            <a href="https://github.com/Gxyenn/XLESYVIP" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/733/733609.png" alt="Script Bot WA"> Script Bot WA
-            </a>
-            <a href="https://youtube.com/@GxyenDev" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"> YouTube
-            </a>
-            <a href="https://whatsapp.com/channel/0029Vap5nJh2UPBDIc9b
+        <section id="products" class="products">
+            <h3>Produk Kami</h3>
+            <div class="product-list">
+                <div class="product-item">
+                    <img src="https://via.placeholder.com/150" alt="Produk 1">
+                    <h4>Produk 1</h4>
+                    <p>Deskripsi singkat tentang produk ini.</p>
+                    <button>Beli Sekarang</button>
+                </div>
+
+                <div class="product-item">
+                    <img src="https://via.placeholder.com/150" alt="Produk 2">
+                    <h4>Produk 2</h4>
+                    <p>Deskripsi singkat tentang produk ini.</p>
+                    <button>Beli Sekarang</button>
+                </div>
+
+                <div class="product-item">
+                    <img src="https://via.placeholder.com/150" alt="Produk 3">
+                    <h4>Produk 3</h4>
+                    <p>Deskripsi singkat tentang produk ini.</p>
+                    <button>Beli Sekarang</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Lippxz Store Digital. All rights reserved.</p>
+    </footer>
+</body>
+</html>
