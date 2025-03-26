@@ -63,39 +63,37 @@
             chatBox.scrollTop = chatBox.scrollHeight;
         }
 
+        // Fungsi untuk menambahkan pesan dengan animasi
+        function addMessage(message, type) {
+            const chatBox = document.getElementById('chat-box');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.textContent = message;
+            chatBox.appendChild(messageDiv);
+
+            // Animasi masuk
+            setTimeout(() => messageDiv.classList.add('show'), 50);
+
+            scrollToBottom();
+        }
+
         // Fungsi untuk Kirim Pesan ke API
         function sendMessage() {
             const userInput = document.getElementById('user-input');
-            const chatBox = document.getElementById('chat-box');
-
             if (!userInput.value) return alert("Harap masukkan pesan!");
 
             // Tampilkan pesan pengguna
-            const userMessage = document.createElement('div');
-            userMessage.className = 'user-message';
-            userMessage.textContent = userInput.value;
-            chatBox.appendChild(userMessage);
-            scrollToBottom();
+            addMessage(userInput.value, 'user');
 
             const apiUrl = `https://api.siputzx.my.id/api/ai/luminai?content=${encodeURIComponent(userInput.value)}`;
 
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => {
-                    const botMessage = document.createElement('div');
-                    botMessage.className = 'bot-message';
-                    botMessage.textContent = data.result
-                        ? `${data.result}\n\nDibuat oleh Gxyenn.`
-                        : "Gagal mendapatkan respon.";
-                    chatBox.appendChild(botMessage);
-                    scrollToBottom();
+                    addMessage(data.result ? `${data.result}\n\nDibuat oleh Gxyenn.` : "Gagal mendapatkan respon.", 'bot');
                 })
                 .catch(() => {
-                    const errorMessage = document.createElement('div');
-                    errorMessage.className = 'error-message';
-                    errorMessage.textContent = "Terjadi kesalahan, coba lagi.";
-                    chatBox.appendChild(errorMessage);
-                    scrollToBottom();
+                    addMessage("Terjadi kesalahan, coba lagi.", 'error');
                 });
 
             userInput.value = '';
