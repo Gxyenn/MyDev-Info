@@ -1,73 +1,70 @@
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
-    color: #333;
-}
-
-header {
-    background: #6200ea;
-    color: #fff;
-    padding: 1rem;
+    font-family: Arial, sans-serif;
+    background: #0d1117;
+    color: white;
     text-align: center;
 }
 
-.hero {
-    text-align: center;
-    padding: 2rem;
-    background: #f3f3f3;
-}
-
-.hero .btn {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 0.8rem 1.5rem;
-    background: #6200ea;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.products {
-    padding: 2rem;
-    text-align: center;
-}
-
-.product-list {
+/* Loading Screen */
+#loading-screen {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+    height: 100vh;
+    background: #0d1117;
 }
 
-.product-item {
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 1rem;
-    width: 200px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 20px;
 }
 
-.product-item img {
-    width: 100%;
-    border-radius: 8px;
+.loading-text {
+    margin-top: 10px;
+    color: #bbb;
 }
 
-.product-item button {
-    background: #6200ea;
-    color: #fff;
+/* Main Content */
+#main-content {
+    padding: 20px;
+}
+
+/* Chat Box */
+.chat-box {
+    background: #1c1f26;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+/* Button Container */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+button {
+    background: #6f42c1;
+    color: white;
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 1rem;
 }
 
-footer {
-    text-align: center;
-    background: #6200ea;
-    color: white;
-    padding: 1rem;
-    margin-top: 2rem;
-  }
+/* WhatsApp Button */
+.whatsapp-btn {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+}
+
+.whatsapp-btn img {
+    width: 50px;
+    height: 50px;
+}
