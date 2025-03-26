@@ -23,12 +23,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* Loading Text */
-.loading-text {
-    margin-top: 10px;
-    color: #bbb;
-}
-
 /* Main Content */
 #main-content {
     padding: 20px;
@@ -69,15 +63,6 @@ button {
     cursor: pointer;
 }
 
-/* Response Text */
-#response {
-    background: #1c1f26;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    color: #bbb;
-}
-
 /* Script Bot WA Button */
 .script-bot-btn {
     display: inline-block;
@@ -99,4 +84,4 @@ button {
 .whatsapp-btn img {
     width: 50px;
     height: 50px;
-}
+    }
