@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gxyenn Store</title>
+    <title>Gxyenn Assistant</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -28,9 +28,17 @@
             <div class="chat-box">
                 <p>Haii, Aku Gxyenn Assistant, Saya Akan Melayani Anda, Apa Yang Ingin Anda Cari??</p>
             </div>
+
+            <!-- Input untuk Kirim Pesan ke API -->
+            <div class="input-container">
+                <input type="text" id="user-input" placeholder="Ketik sesuatu...">
+                <button onclick="sendMessage()">Kirim</button>
+            </div>
+            <div id="response"></div>
+
+            <!-- Tombol Script Bot WA -->
             <div class="button-container">
-                <button onclick="alert('Produk Panel Pterodactyl')">Produk Panel Pterodactyl</button>
-                <button onclick="alert('Script Bot WhatsApp')">Script Bot WhatsApp</button>
+                <a href="https://github.com/Gxyenn/XLESYVIP" class="script-bot-btn" target="_blank">SCRIP BOT WA</a>
             </div>
         </main>
 
@@ -48,6 +56,24 @@
                 document.getElementById('main-content').style.display = 'block';
             }, 2000); // Loading selama 2 detik
         };
+
+        // Fungsi untuk Kirim Pesan ke API
+        function sendMessage() {
+            const userInput = document.getElementById('user-input').value;
+            if (!userInput) return alert("Harap masukkan pesan!");
+
+            const apiUrl = `https://api.siputzx.my.id/api/ai/luminai?content=${encodeURIComponent(userInput)}`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const responseText = data.result ? `${data.result}\n\nDibuat oleh Gxyenn.` : "Gagal mendapatkan respon.";
+                    document.getElementById('response').innerText = responseText;
+                })
+                .catch(error => {
+                    document.getElementById('response').innerText = "Terjadi kesalahan, coba lagi.";
+                });
+        }
     </script>
 </body>
-</html>
+                </html>
