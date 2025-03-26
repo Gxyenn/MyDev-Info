@@ -16,6 +16,7 @@ body {
     background: #0d1117;
 }
 
+/* Profile Picture */
 .profile-pic {
     width: 100px;
     height: 100px;
@@ -34,6 +35,36 @@ body {
     padding: 15px;
     border-radius: 10px;
     margin: 20px 0;
+    max-height: 300px;
+    overflow-y: auto;
+    text-align: left;
+}
+
+/* Message */
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 75%;
+}
+
+/* User Message */
+.message.user {
+    background: #6f42c1;
+    color: white;
+    margin-left: auto;
+}
+
+/* Bot Message */
+.message.bot {
+    background: #1f6feb;
+    color: white;
+    margin-right: auto;
+}
+
+/* Error Message */
+.message.error {
+    background: #ff4d4d;
 }
 
 /* Input Container */
