@@ -42,20 +42,51 @@ body {
     margin: 20px 0;
 }
 
-/* Button Container */
-.button-container {
+/* Input Container */
+.input-container {
     display: flex;
-    flex-direction: column;
     gap: 10px;
+    margin: 20px 0;
+    justify-content: center;
 }
 
+input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background: #1c1f26;
+    color: white;
+}
+
+/* Kirim Button */
 button {
     background: #6f42c1;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
+}
+
+/* Response Text */
+#response {
+    background: #1c1f26;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    color: #bbb;
+}
+
+/* Script Bot WA Button */
+.script-bot-btn {
+    display: inline-block;
+    background: #6f42c1;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-top: 10px;
 }
 
 /* WhatsApp Button */
