@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gxyenn Assistant</title>
+    <title>Ai Assistant</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Loading Screen -->
     <div id="loading-screen">
         <img src="https://files.catbox.moe/j6x9zj.jpg" alt="Gxyenn Logo" class="profile-pic">
-        <h1>Gxyenn Store</h1>
-        <p>Store Aman Dan Terpercaya</p>
+        <h1>GxyenDev</h1>
+        <p>Pembuat/Dev Web Ai Ini!..</p>
         <p class="loading-text">Loading...</p>
     </div>
 
@@ -70,7 +70,7 @@
             }
         }
 
-        // Fungsi untuk Kirim Pesan ke API
+        // Fungsi untuk Kirim Pesan ke API dengan Proxy Lokal
         function sendMessage() {
             const userInput = document.getElementById('user-input').value;
             const chatBox = document.getElementById('chat-box');
@@ -82,9 +82,16 @@
             userMessage.textContent = userInput;
             chatBox.appendChild(userMessage);
 
-            // Panggil API
+            // API yang akan dijalankan oleh pengguna sendiri
             const apiUrl = `https://api.siputzx.my.id/api/ai/esia?content=${encodeURIComponent(userInput)}`;
-            fetch(apiUrl)
+
+            // Gunakan Proxy agar berjalan di browser pengguna
+            fetch(apiUrl, {
+                method: "GET",
+                headers: {
+                    "Cache-Control": "no-cache"
+                }
+            })
                 .then(response => response.json())
                 .then(data => {
                     const aiMessage = document.createElement('div');
