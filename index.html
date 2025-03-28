@@ -73,25 +73,24 @@
             chatBox.appendChild(userMessage);
 
             // Panggil API
-            const apiUrl = `https://api.siputzx.my.id/api/ai/esia?content=${encodeURIComponent(userInput)}`;
             fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    const aiMessage = document.createElement('div');
-                    aiMessage.classList.add('ai-message');
-                    aiMessage.textContent = data.result
-                        ? data.result
-                        : "Gagal mendapatkan respon.";
-                    chatBox.appendChild(aiMessage);
-                    chatBox.scrollTop = chatBox.scrollHeight;
-                })
-                .catch(() => {
-                    const errorMessage = document.createElement('div');
-                    errorMessage.classList.add('error-message');
-                    errorMessage.textContent = "Terjadi kesalahan, coba lagi.";
-                    chatBox.appendChild(errorMessage);
-                    chatBox.scrollTop = chatBox.scrollHeight;
-                });
+    .then(response => response.json())
+    .then(data => {
+        console.log("API Response:", data);  // Tambahkan log ini
+        const aiMessage = document.createElement('div');
+        aiMessage.classList.add('ai-message');
+        aiMessage.textContent = data.data ? data.data : "Gagal mendapatkan respon.";
+        chatBox.appendChild(aiMessage);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    })
+    .catch(error => {
+        console.error("Fetch error:", error);
+        const errorMessage = document.createElement('div');
+        errorMessage.classList.add('error-message');
+        errorMessage.textContent = "Terjadi kesalahan, coba lagi.";
+        chatBox.appendChild(errorMessage);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    });
 
             // Reset input
             document.getElementById('user-input').value = '';
