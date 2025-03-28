@@ -1,106 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gxyenn Assistant</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <!-- Loading Screen -->
-    <div id="loading-screen">
-        <img src="https://files.catbox.moe/j6x9zj.jpg" alt="Gxyenn Logo" class="profile-pic">
-        <h1>Gxyenn Store</h1>
-        <p>Store Aman Dan Terpercaya</p>
-        <p class="loading-text">Loading...</p>
-    </div>
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+    <title>Ai Assistant</title>  
+    <link rel="stylesheet" href="styles.css">  
+</head>  
+<body>  
+    <!-- Loading Screen -->  
+    <div id="loading-screen">  
+        <img src="https://files.catbox.moe/j6x9zj.jpg" alt="Gxyenn Logo" class="profile-pic">  
+        <h1>AiAsistentYou</h1>  
+        <p>Dev Gxyenn</p>  
+        <p class="loading-text">Loading...</p>  
+    </div>  <!-- Main Content -->  
+<div id="main-content" style="display: none;">  
+    <header>  
+        <img src="https://files.catbox.moe/j6x9zj.jpg" alt="Gxyenn Assistant" class="profile-pic">  
+        <h1>AiGxyenn</h1>  
+        <p>Ai Assistant By Gxyenn</p>  
+    </header>  
 
-    <!-- Main Content -->
-    <div id="main-content" style="display: none;">
-        <header>
-            <img src="https://files.catbox.moe/j6x9zj.jpg" alt="Gxyenn Assistant" class="profile-pic">
-            <h1>AiGxyenn</h1>
-            <p>Ai Assistant By Gxyenn</p>
-        </header>
+    <main>  
+        <!-- Chat Box -->  
+        <div id="chat-box" class="chat-box">  
+            <div class="ai-message">  
+                Haii, Aku Gxyenn Assistant, Saya Akan Melayani Anda, Apa Yang Ingin Anda Cari??  
+            </div>  
+        </div>  
 
-        <main>
-            <!-- Chat Box -->
-            <div id="chat-box" class="chat-box">
-                <div class="ai-message">
-                    Haii, Aku Gxyenn Assistant, Saya Akan Melayani Anda, Apa Yang Ingin Anda Cari??
-                </div>
-            </div>
+        <!-- Input untuk Kirim Pesan ke API -->  
+        <div class="input-container">  
+            <input type="text" id="user-input" placeholder="Ketik sesuatu...">  
+            <button onclick="sendMessage()">Kirim</button>  
+            <button onclick="resetChat()">Reset</button>  
+        </div>  
 
-            <!-- Input untuk Kirim Pesan ke API -->
-            <div class="input-container">
-                <input type="text" id="user-input" placeholder="Ketik sesuatu...">
-                <button onclick="sendMessage()">Kirim</button>
-                <button onclick="resetChat()">Reset</button>
-            </div>
+        <!-- Tombol Script Bot WA -->  
+        <div class="button-container">  
+            <a href="https://github.com/Gxyenn/XLESYVIP" class="script-bot-btn" target="_blank">SCRIP BOT WA</a>  
+        </div>  
+    </main>  
 
-            <!-- Tombol Script Bot WA -->
-            <div class="button-container">
-                <a href="https://github.com/Gxyenn/XLESYVIP" class="script-bot-btn" target="_blank">SCRIP BOT WA</a>
-            </div>
-        </main>
+    <!-- WhatsApp Icon -->  
+    <a href="https://wa.me/6283877636168" class="whatsapp-btn" target="_blank">  
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">  
+    </a>  
+</div>  
 
-        <!-- WhatsApp Icon -->
-        <a href="https://wa.me/6283877636168" class="whatsapp-btn" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-        </a>
-    </div>
+<script>  
+    // Simulasi loading screen  
+    window.onload = function () {  
+        setTimeout(function () {  
+            document.getElementById('loading-screen').style.display = 'none';  
+            document.getElementById('main-content').style.display = 'block';  
+        }, 2000);  
+    };  
 
-    <script>
-        // Simulasi loading screen
-        window.onload = function () {
-            setTimeout(function () {
-                document.getElementById('loading-screen').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
-            }, 2000);
-        };
+    // Fungsi untuk Kirim Pesan ke API  
+    function sendMessage() {  
+        const userInput = document.getElementById('user-input').value;  
+        const chatBox = document.getElementById('chat-box');  
+        if (!userInput) return alert("Harap masukkan pesan!");  
 
-        // Fungsi untuk Kirim Pesan ke API
-        function sendMessage() {
-            const userInput = document.getElementById('user-input').value;
-            const chatBox = document.getElementById('chat-box');
-            if (!userInput) return alert("Harap masukkan pesan!");
+        // Tambahkan pesan user di sebelah kanan  
+        const userMessage = document.createElement('div');  
+        userMessage.classList.add('user-message');  
+        userMessage.textContent = userInput;  
+        chatBox.appendChild(userMessage);  
 
-            // Tambahkan pesan user di sebelah kanan
-            const userMessage = document.createElement('div');
-            userMessage.classList.add('user-message');
-            userMessage.textContent = userInput;
-            chatBox.appendChild(userMessage);
+        // Panggil API  
+        const apiUrl = `https://api.siputzx.my.id/api/ai/esia?content=${encodeURIComponent(userInput)}`;  
+        fetch(apiUrl)  
+            .then(response => response.json())  
+            .then(data => {  
+                const aiMessage = document.createElement('div');  
+                aiMessage.classList.add('ai-message');  
+                aiMessage.textContent = data.result  
+                    ? data.result  
+                    : "Gagal mendapatkan respon.";  
+                chatBox.appendChild(aiMessage);  
+                chatBox.scrollTop = chatBox.scrollHeight;  
+            })  
+            .catch(() => {  
+                const errorMessage = document.createElement('div');  
+                errorMessage.classList.add('error-message');  
+                errorMessage.textContent = "Terjadi kesalahan, coba lagi.";  
+                chatBox.appendChild(errorMessage);  
+                chatBox.scrollTop = chatBox.scrollHeight;  
+            });  
 
-            // Panggil API
-            fetch(apiUrl)
-    .then(response => response.json())
-    .then(data => {
-        console.log("API Response:", data);  // Tambahkan log ini
-        const aiMessage = document.createElement('div');
-        aiMessage.classList.add('ai-message');
-        aiMessage.textContent = data.data ? data.data : "Gagal mendapatkan respon.";
-        chatBox.appendChild(aiMessage);
-        chatBox.scrollTop = chatBox.scrollHeight;
-    })
-    .catch(error => {
-        console.error("Fetch error:", error);
-        const errorMessage = document.createElement('div');
-        errorMessage.classList.add('error-message');
-        errorMessage.textContent = "Terjadi kesalahan, coba lagi.";
-        chatBox.appendChild(errorMessage);
-        chatBox.scrollTop = chatBox.scrollHeight;
-    });
+        // Reset input  
+        document.getElementById('user-input').value = '';  
+    }  
 
-            // Reset input
-            document.getElementById('user-input').value = '';
-        }
+    // Reset Chat  
+    function resetChat() {  
+        const chatBox = document.getElementById('chat-box');  
+        chatBox.innerHTML = '<div class="ai-message">Haii, Aku Gxyenn Assistant, Saya Akan Melayani Anda, Apa Yang Ingin Anda Cari??</div>';  
+    }  
+</script>
 
-        // Reset Chat
-        function resetChat() {
-            const chatBox = document.getElementById('chat-box');
-            chatBox.innerHTML = '<div class="ai-message">Haii, Aku Gxyenn Assistant, Saya Akan Melayani Anda, Apa Yang Ingin Anda Cari??</div>';
-        }
-    </script>
-</body>
-                    </html>
+</body>  
+    </html>
