@@ -73,7 +73,7 @@
             chatBox.appendChild(userMessage);
 
             // Panggil API
-            const apiUrl = `https://api.siputzx.my.id/api/ai/luminai?content=${encodeURIComponent(userInput)}`;
+            const apiUrl = `https://api.siputzx.my.id/api/ai/esia?content=${encodeURIComponent(userInput)}`;
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => {
