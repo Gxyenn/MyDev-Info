@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dev info</title>
+    <title>DevInfoMe</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
@@ -78,6 +78,21 @@
             height: 150px;
             border-radius: 50%;
             margin-top: 20px;
+        }
+
+        .profile-section {
+            display: none;
+            text-align: center;
+            padding-top: 50px;
+            opacity: 0;
+            animation: fadeInText 2s forwards 4s;
+        }
+
+        .profile-section img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
         }
 
         @keyframes fadeIn {
@@ -183,7 +198,7 @@
         <div class="close-menu-icon" onclick="toggleMenu()">
             <i class="fas fa-times"></i>
         </div>
-        <a href="https://github.com/Gxyenn/Gxyenn.github.io#profiledev" target="_blank">Profile</a>
+        <a href="https://Gxyenn.github.io/#profile" target="_self">Profile</a>
     </div>
 
     <img class="profile-image" src="https://files.catbox.moe/j6x9zj.jpg" alt="Profile Picture">
@@ -214,11 +229,24 @@
         <img src="https://via.placeholder.com/150" alt="Random Image">
     </div>
 
+    <!-- Profile Section (Hidden by Default) -->
+    <div class="profile-section" id="profileSection">
+        <img src="https://files.catbox.moe/j6x9zj.jpg" alt="Profile Picture">
+        <h2>Gxyenn's Profile</h2>
+        <p><strong>Age:</strong> 13</p>
+        <p><strong>Location:</strong> Privasi</p>
+    </div>
+
     <script>
         // Function to toggle the menu visibility
         function toggleMenu() {
             var menu = document.getElementById('menu');
             menu.classList.toggle('open');
+        }
+
+        // Check if the URL contains #profile and show the profile section
+        if (window.location.hash === "#profile") {
+            document.getElementById("profileSection").style.display = "block";
         }
     </script>
 
