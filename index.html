@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevInfoMe</title>
+    <title>Dev Info</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
@@ -80,23 +80,6 @@
             margin-top: 20px;
         }
 
-        .profile-section {
-            display: none;
-            text-align: center;
-            padding-top: 50px;
-            opacity: 0;
-            animation: fadeInText 2s forwards 4s;
-        }
-
-        .profile-section img {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            animation: glowEffect 2s infinite;
-        }
-
-        /* Animations */
         @keyframes fadeIn {
             0% { opacity: 0; }
             100% { opacity: 1; }
@@ -128,17 +111,6 @@
             100% {
                 box-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px #0000ff, 0 0 20px #0000ff, 0 0 25px #0000ff, 0 0 30px #0000ff, 0 0 35px #0000ff;
             }
-        }
-
-        /* Profile Information */
-        .profile-info {
-            font-size: 18px;
-            color: white;
-            margin-top: 20px;
-        }
-
-        .profile-info p {
-            margin: 10px 0;
         }
 
         /* Menu Hamburger */
@@ -211,12 +183,12 @@
         <div class="close-menu-icon" onclick="toggleMenu()">
             <i class="fas fa-times"></i>
         </div>
-        <a href="https://youtube.com/@GxyenDev" target="_blank" title="SupMe">SupMe</a>
+        <a href="https://github.com/Gxyenn/Gxyenn.github.io" target="_blank">Project</a>
     </div>
 
     <img class="profile-image" src="https://files.catbox.moe/j6x9zj.jpg" alt="Profile Picture">
 
-    <h1>DevInfoMe</h1>
+    <h1>Dev Info</h1>
 
     <div class="links">
         <a href="https://youtube.com/@GxyenDev" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
@@ -237,12 +209,18 @@
     <div class="about-me">
         <h2>About Gxyenn</h2>
         <p>
-            Gxyenn is an aspiring developer currently in the early stages of learning web development, with a keen interest in creating engaging and functional websites. As a self-taught developer, Gxyenn is exploring various technologies and tools, including HTML, CSS, JavaScript, and others. Though still a beginner, Gxyenn is dedicated to improving and experimenting with new ideas to make meaningful projects.
+            Gxyenn is an aspiring developer currently in the early stages of learning web development, with a keen interest in creating engaging and functional websites. As a self-taught developer, Gxyenn is exploring various technologies and tools, including HTML, CSS, JavaScript, and others. Though still a beginner, Gxyenn is dedicated to improving and experimenting with new ideas to make meaningful projects. If you are looking for a beginner developer with a passion for learning and growth, Gxyenn is an excellent choice for small-scale projects and collaborations. With a strong focus on continuous learning, Gxyenn is eager to contribute to the development community and grow as a web developer.
         </p>
+        <img src="https://via.placeholder.com/150" alt="Random Image">
     </div>
 
-    <!-- Profile Section -->
-    <div class="profile-section" id="profileSection">
-        <img src="https://files.catbox.moe/j6x9zj.jpg" alt="Profile Picture">
-        <div class="profile-info">
-            <p><strong>Name:</strong> Gxyenn</p>
+    <script>
+        // Function to toggle the menu visibility
+        function toggleMenu() {
+            var menu = document.getElementById('menu');
+            menu.classList.toggle('open');
+        }
+    </script>
+
+</body>
+</html>
