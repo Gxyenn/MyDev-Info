@@ -14,6 +14,7 @@
             padding-top: 50px;
             opacity: 0;
             animation: fadeIn 2s forwards;
+            margin: 0;
         }
 
         h1 {
@@ -80,9 +81,65 @@
             0% { opacity: 0; }
             100% { opacity: 1; }
         }
+
+        /* Menu Hamburger */
+        .menu-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            font-size: 40px;
+        }
+
+        .menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            width: 250px;
+            height: 100%;
+            padding-top: 60px;
+            z-index: 999;
+            opacity: 0;
+            animation: fadeInMenu 0.5s forwards;
+        }
+
+        .menu a {
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 22px;
+            display: block;
+        }
+
+        .menu a:hover {
+            background-color: #575757;
+        }
+
+        /* Toggle Menu Visibility */
+        .menu.open {
+            display: block;
+        }
+
+        @keyframes fadeInMenu {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
     </style>
 </head>
 <body>
+
+    <!-- Hamburger Menu Icon -->
+    <div class="menu-icon" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <!-- Menu Panel -->
+    <div class="menu" id="menu">
+        <a href="https://github.com/Gxyenn/Gxyenn.github.io" target="_blank">Project</a>
+    </div>
 
     <img class="profile-image" src="https://files.catbox.moe/j6x9zj.jpg" alt="Profile Picture">
 
@@ -103,6 +160,14 @@
         <span>HTML</span>
         <span>SCRIPT BOT WA</span>
     </div>
+
+    <script>
+        // Function to toggle the menu visibility
+        function toggleMenu() {
+            var menu = document.getElementById('menu');
+            menu.classList.toggle('open');
+        }
+    </script>
 
 </body>
 </html>
