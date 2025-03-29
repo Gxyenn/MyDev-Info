@@ -30,7 +30,7 @@
             object-fit: cover;
             margin: 0 auto;
             opacity: 0;
-            animation: fadeInImage 2s forwards 0.5s, glowEffect 2s infinite 2s; /* Updated for infinite loop */
+            animation: fadeInImage 2s forwards 0.5s, glowEffect 2s infinite 2s;
         }
 
         .links {
@@ -60,6 +60,24 @@
         .dev-info span {
             display: block;
             margin-top: 10px;
+        }
+
+        .about-me {
+            margin-top: 30px;
+            font-size: 18px;
+            color: white;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: fadeInText 2s forwards 3s;
+        }
+
+        .about-me img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-top: 20px;
         }
 
         @keyframes fadeIn {
@@ -182,10 +200,18 @@
     <div class="dev-info">
         <h2>DEV</h2>
         <span>XLESYVIP</span>
-        <span>AI-GXYENN</span>
         <span>JAVAENC</span>
         <span>HTML</span>
         <span>SCRIPT BOT WA</span>
+    </div>
+
+    <!-- About Me Section -->
+    <div class="about-me">
+        <h2>About Gxyenn</h2>
+        <p>
+            Gxyenn is an aspiring developer currently in the early stages of learning web development, with a keen interest in creating engaging and functional websites. As a self-taught developer, Gxyenn is exploring various technologies and tools, including HTML, CSS, JavaScript, and others. Though still a beginner, Gxyenn is dedicated to improving and experimenting with new ideas to make meaningful projects. If you are looking for a beginner developer with a passion for learning and growth, Gxyenn is an excellent choice for small-scale projects and collaborations. With a strong focus on continuous learning, Gxyenn is eager to contribute to the development community and grow as a web developer.
+        </p>
+        <img src="https://via.placeholder.com/150" alt="Random Image">
     </div>
 
     <script>
@@ -197,4 +223,4 @@
     </script>
 
 </body>
-            </html>
+</html>
