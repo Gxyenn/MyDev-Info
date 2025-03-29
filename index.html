@@ -30,7 +30,7 @@
             object-fit: cover;
             margin: 0 auto;
             opacity: 0;
-            animation: fadeInImage 2s forwards 0.5s;
+            animation: fadeInImage 2s forwards 0.5s, glowEffect 2s forwards 2s;
         }
 
         .links {
@@ -80,6 +80,19 @@
         @keyframes fadeInLinks {
             0% { opacity: 0; }
             100% { opacity: 1; }
+        }
+
+        /* Glow Effect on Profile Image */
+        @keyframes glowEffect {
+            0% {
+                box-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px #ff0000, 0 0 20px #ff0000, 0 0 25px #ff0000, 0 0 30px #ff0000, 0 0 35px #ff0000;
+            }
+            50% {
+                box-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px #00ff00, 0 0 20px #00ff00, 0 0 25px #00ff00, 0 0 30px #00ff00, 0 0 35px #00ff00;
+            }
+            100% {
+                box-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px #0000ff, 0 0 20px #0000ff, 0 0 25px #0000ff, 0 0 30px #0000ff, 0 0 35px #0000ff;
+            }
         }
 
         /* Menu Hamburger */
