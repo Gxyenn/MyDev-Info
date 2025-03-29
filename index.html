@@ -117,6 +117,16 @@
             background-color: #575757;
         }
 
+        /* Close Menu Icon */
+        .close-menu-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            font-size: 30px;
+            color: white;
+        }
+
         /* Toggle Menu Visibility */
         .menu.open {
             display: block;
@@ -138,6 +148,10 @@
 
     <!-- Menu Panel -->
     <div class="menu" id="menu">
+        <!-- Close Icon inside the Menu -->
+        <div class="close-menu-icon" onclick="toggleMenu()">
+            <i class="fas fa-times"></i>
+        </div>
         <a href="https://github.com/Gxyenn/Gxyenn.github.io" target="_blank">Project</a>
     </div>
 
