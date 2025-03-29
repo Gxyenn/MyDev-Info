@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Info Gxyenn</title>
+    <title>DevInfoMe</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
@@ -12,35 +12,81 @@
             font-family: Arial, sans-serif;
             text-align: center;
             padding-top: 50px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
         }
+
         h1 {
             font-size: 36px;
+            opacity: 0;
+            animation: fadeInText 2s forwards 1s;
         }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeInImage 2s forwards 0.5s;
+        }
+
         .links {
             margin-top: 20px;
+            opacity: 0;
+            animation: fadeInLinks 2s forwards 1.5s;
         }
+
         .links a {
             color: white;
             font-size: 30px;
             margin: 0 15px;
             text-decoration: none;
         }
+
         .links a:hover {
             color: #f1c40f;
         }
+
         .dev-info {
             margin-top: 40px;
             font-size: 20px;
+            opacity: 0;
+            animation: fadeInText 2s forwards 2s;
         }
+
         .dev-info span {
             display: block;
             margin-top: 10px;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes fadeInText {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes fadeInImage {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes fadeInLinks {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
 <body>
 
-    <h1>Gxyenn Info</h1>
+    <img class="profile-image" src="https://files.catbox.moe/j6x9zj.jpg" alt="Profile Picture">
+
+    <h1>DevInfoMe</h1>
 
     <div class="links">
         <a href="https://youtube.com/@GxyenDev" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
