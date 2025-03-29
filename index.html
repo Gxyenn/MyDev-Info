@@ -1,105 +1,62 @@
-<!DOCTYPE html>  <html lang="en">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">  
-    <title>Gxyenn Assistant</title>  
-    <link rel="stylesheet" href="styles.css">  
-</head>  
-<body>  
-    <!-- Loading Screen -->  
-    <div id="loading-screen">  
-        <img src="https://files.catbox.moe/j6x9zj.jpg" alt="Gxyenn Logo" class="profile-pic">  
-        <h1>GxyennDev</h1>  
-        <p>Dev Web Ini</p>  
-        <p class="loading-text">Loading...</p>  
-    </div>  <!-- Main Content -->  
-<div id="main-content" style="display: none;">  
-    <header>  
-        <img src="https://files.catbox.moe/j6x9zj.jpg" alt="Gxyenn Assistant" class="profile-pic">  
-        <h1>Lumina</h1>  
-        <p>Ai Assistant By Gxyenn</p>  
-    </header>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info Gxyenn</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+        h1 {
+            font-size: 36px;
+        }
+        .links {
+            margin-top: 20px;
+        }
+        .links a {
+            color: white;
+            font-size: 30px;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        .links a:hover {
+            color: #f1c40f;
+        }
+        .dev-info {
+            margin-top: 40px;
+            font-size: 20px;
+        }
+        .dev-info span {
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
 
-    <main>  
-        <!-- Chat Box -->  
-        <div id="chat-box" class="chat-box">  
-            <div class="ai-message">  
-                Haii, Aku Gxyenn Assistant, Saya Akan Melayani Anda, Apa Yang Ingin Anda Cari??  
-            </div>  
-        </div>  
+    <h1>Gxyenn Info</h1>
 
-        <!-- Input untuk Kirim Pesan ke API -->  
-        <div class="input-container">  
-            <input type="text" id="user-input" placeholder="Ketik sesuatu...">  
-            <button onclick="sendMessage()">Kirim</button>  
-            <button onclick="resetChat()">Reset</button>  
-        </div>  
+    <div class="links">
+        <a href="https://youtube.com/@GxyenDev" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://whatsapp.com/channel/0029Vap5nJh2UPBDIc9bja1s" target="_blank" title="WhatsApp Channel"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://wa.me/6283877636168" target="_blank" title="WhatsApp Contact"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://github.com/Gxyenn" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+    </div>
 
-        <!-- Tombol Script Bot WA -->  
-        <div class="button-container">  
-            <a href="https://github.com/Gxyenn/XLESYVIP" class="script-bot-btn" target="_blank">SCRIP BOT WA</a>  
-        </div>  
-    </main>  
+    <div class="dev-info">
+        <h2>DEV</h2>
+        <span>XLESYVIP</span>
+        <span>AI-GXYENN</span>
+        <span>JAVAENC</span>
+        <span>HTML</span>
+        <span>SCRIPT BOT WA</span>
+    </div>
 
-    <!-- WhatsApp Icon -->  
-    <a href="https://wa.me/6283877636168" class="whatsapp-btn" target="_blank">  
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">  
-    </a>  
-</div>  
-
-<script>  
-    // Simulasi loading screen  
-    window.onload = function () {  
-        setTimeout(function () {  
-            document.getElementById('loading-screen').style.display = 'none';  
-            document.getElementById('main-content').style.display = 'block';  
-        }, 2000);  
-    };  
-
-    // Fungsi untuk Kirim Pesan ke API  
-    function sendMessage() {  
-        const userInput = document.getElementById('user-input').value;  
-        const chatBox = document.getElementById('chat-box');  
-        if (!userInput) return alert("Harap masukkan pesan!");  
-
-        // Tambahkan pesan user di sebelah kanan  
-        const userMessage = document.createElement('div');  
-        userMessage.classList.add('user-message');  
-        userMessage.textContent = userInput;  
-        chatBox.appendChild(userMessage);  
-
-        // Panggil API  
-        const apiUrl = `https://api.siputzx.my.id/api/ai/esia?content=${encodeURIComponent(userInput)}`;  
-        fetch(apiUrl)  
-            .then(response => response.json())  
-            .then(data => {  
-                const aiMessage = document.createElement('div');  
-                aiMessage.classList.add('ai-message');  
-                aiMessage.textContent = data.result  
-                    ? data.result  
-                    : "Gagal mendapatkan respon.";  
-                chatBox.appendChild(aiMessage);  
-                chatBox.scrollTop = chatBox.scrollHeight;  
-            })  
-            .catch(() => {  
-                const errorMessage = document.createElement('div');  
-                errorMessage.classList.add('error-message');  
-                errorMessage.textContent = "Terjadi kesalahan, coba lagi.";  
-                chatBox.appendChild(errorMessage);  
-                chatBox.scrollTop = chatBox.scrollHeight;  
-            });  
-
-        // Reset input  
-        document.getElementById('user-input').value = '';  
-    }  
-
-    // Reset Chat  
-    function resetChat() {  
-        const chatBox = document.getElementById('chat-box');  
-        chatBox.innerHTML = '<div class="ai-message">Haii, Aku Gxyenn Assistant, Saya Akan Melayani Anda, Apa Yang Ingin Anda Cari??</div>';  
-    }  
-</script>
-
-</body>  
+</body>
 </html>
